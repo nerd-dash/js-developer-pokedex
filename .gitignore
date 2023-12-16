@@ -1,0 +1,11 @@
+# Node.js related
+node_modules/
+npm-debug.log
+
+# IDE related
+.idea/
+.vscode/
+*.iml
+
+# Build related
+dist/

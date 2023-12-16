@@ -1,4 +1,15 @@
+import { pokeApi } from "./poke-api.js"
+
+
+/**
+ * @type {HTMLUListElement}
+ */
 const pokemonList = document.getElementById('pokemonList')
+
+
+/**
+ * @type {HTMLButtonElement}
+ */
 const loadMoreButton = document.getElementById('loadMoreButton')
 
 const maxRecords = 151
@@ -23,6 +34,12 @@ function convertPokemonToLi(pokemon) {
     `
 }
 
+
+/**
+ * 
+ * @param {number} offset 
+ * @param {number} limit 
+ */
 function loadPokemonItens(offset, limit) {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
         const newHtml = pokemons.map(convertPokemonToLi).join('')
@@ -32,7 +49,7 @@ function loadPokemonItens(offset, limit) {
 
 loadPokemonItens(offset, limit)
 
-loadMoreButton.addEventListener('click', () => {
+loadMoreButton.onclick = () => {
     offset += limit
     const qtdRecordsWithNexPage = offset + limit
 
@@ -44,4 +61,4 @@ loadMoreButton.addEventListener('click', () => {
     } else {
         loadPokemonItens(offset, limit)
     }
-})
+}
